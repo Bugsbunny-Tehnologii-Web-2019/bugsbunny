@@ -16,11 +16,11 @@ Bugsbunny dorește a fi o aplicație web care să permită identificarea și rez
 
 Aplicația dezvoltată oferă un set de caracteristici personalizabile care răspund nevoilor fiecărei echipe. Bug management-ul și flow-urile de rezolvare a erorilor sunt elemente esențiale în procesul de dezvoltare software existând multe produse ce fac deja acest lucru: Trello, Pivotal Tracker, Bugzilla, FogBugz sau Azure DevOps.
 
-![competition-overview](docs/competition.PNG)
+![competition-overview](./docs/competition.PNG)
 
 * Arhitectura high-level
 
-![highlevel-overview](docs/highlevel.PNG)
+![highlevel-overview](./docs/highlevel.PNG)
 
 ## Interfețe aplicație
 
