@@ -64,16 +64,36 @@ Project.init({
     sequelize,
     modelName:'projects'
 })
-
+class Member extends Sequelize.Model { }
+Project.init({
+    id_member:{
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
+    },
+    id_user:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    id_project:{
+        type:Sequelize.STRING,
+        allowNull:false
+    }
+},{
+    sequelize,
+    modelName:'members'
+})
 
 User.sync({force:true});
 Project.sync({force:true});
-Project.belongsTo(User);
-Project.hasMany(User);
+Member.sync({force:true});
+Project.belongsToMany(User,{throught:Member});
+User.belogsToMany(Project,{throught: Member});
 
 module.exports={
     sequelize,
     User,
-    Project
+    Project,
+    Member
     
 }
