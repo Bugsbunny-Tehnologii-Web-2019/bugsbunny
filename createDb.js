@@ -1,4 +1,4 @@
-const db=require("./../models/models");
+const db=require("./backend/models/models");
 db.sequelize.sync().then(async()=>{
     console.log('tablesCreated');
 }).catch(()=>{

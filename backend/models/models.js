@@ -50,7 +50,9 @@ class Project extends Sequelize.Model { }
 Project.init({
     id_project:{
         type:Sequelize.INTEGER,
-        allowNull:false
+        
+        autoIncrement:true,
+        primaryKey:true
     },
     link:{
         type:Sequelize.STRING,
@@ -83,17 +85,70 @@ Project.init({
     sequelize,
     modelName:'members'
 })
-
+class Bug extends Sequelize.Model{}
+Bug.init({
+    id_bug:{
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+     
+        autoIncrement:true
+        
+    },
+    link_commit:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    priority:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    description:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    severity:{
+        type:Sequelize.STRING,
+        allowNull:false
+    }
+},{
+    sequelize,
+    modelName:'bugs'
+})
+class ProjectBug extends Sequelize.Model{};
+ProjectBug.init({
+    id:{
+        primaryKey:true,
+        type:Sequelize.INTEGER,
+        autoIncrement:true
+    },
+    id_project:{
+        type:Sequelize.INTEGER,
+        allowNull:false
+        
+    },
+    id_bug:{
+        type:Sequelize.INTEGER,
+        allowNull:false
+    }
+},{
+sequelize,
+nameModel:'projectbugs'
+});
+ProjectBug.sync({force:true});
 User.sync({force:true});
 Project.sync({force:true});
 Member.sync({force:true});
-Project.belongsToMany(User,{throught:Member});
-User.belogsToMany(Project,{throught: Member});
-
+Bug.sync({force:true});
+Project.belongsToMany(User,{through:Member});
+User.belogsToMany(Project,{through: Member});
+Bug.belogsToMany(Project,{through:ProjectBug});
+Project.belongsToMany(Bug,{through:ProjectBug});
 module.exports={
     sequelize,
     User,
     Project,
-    Member
+    Member,
+    Bug,
+    ProjectBug
     
 }
