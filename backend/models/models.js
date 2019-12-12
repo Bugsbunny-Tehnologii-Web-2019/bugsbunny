@@ -139,10 +139,14 @@ User.sync({force:true});
 Project.sync({force:true});
 Member.sync({force:true});
 Bug.sync({force:true});
-Project.belongsToMany(User,{through:Member});
-User.belogsToMany(Project,{through: Member});
-Bug.belogsToMany(Project,{through:ProjectBug});
-Project.belongsToMany(Bug,{through:ProjectBug});
+Project.hasMany(Member,{as: 'Member',foreignKey: 'id_member'});
+Member.belogsTo(Project,{as: 'Project',foreignKey: 'id_member'});
+User.hasMany(Member,{as:'Member',foreignKey: 'id_user'});
+Member.belogsTo(User,{as:'User',foreignKey: 'id_user'});
+ProjectBug.hasMany(Bug,{as:'Bug',foreignKey: 'id_bug'});
+Bug.belogsTo(ProjectBug,{as:'ProjectBug',foreignKey: 'id_bug'});
+ProjectBug.hasMany(Project,{as:'Project',foreignKey: 'id_project'});
+Project.belogsTo(ProjectBug,{as:'ProjectBug',foreignKey: 'id_project'});
 module.exports={
     sequelize,
     User,
