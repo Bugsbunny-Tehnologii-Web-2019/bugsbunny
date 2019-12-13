@@ -23,6 +23,7 @@ Member.init({
         autoIncrement:true
     }
     
+    
 },{
     sequelize,
     modelName:'members'
