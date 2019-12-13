@@ -15,8 +15,39 @@ sequelize.authenticate().then(() => {
     console.log(`Database connection error: ${err}`);
 });
 
+class Member extends Sequelize.Model { }
+Member.init({
+    id_member:{
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
+    }
+    
+},{
+    sequelize,
+    modelName:'members'
+})
 
-
+class Project extends Sequelize.Model { }
+Project.init({
+    id_project:{
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
+        
+    },
+    link:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    name:{
+        type:Sequelize.STRING,
+        allowNull:false
+    }
+},{
+    sequelize,
+    modelName:'projects'
+})
 
 
 class User extends Sequelize.Model { }
@@ -41,50 +72,14 @@ User.init({
     password:{
         type:Sequelize.STRING,
         allowNull:false
-    }
+    },
+    
 },{
     sequelize,
     modelName:'users'
 });
-class Project extends Sequelize.Model { }
-Project.init({
-    id_project:{
-        type:Sequelize.INTEGER,
-        
-        autoIncrement:true,
-        primaryKey:true
-    },
-    link:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
-    name:{
-        type:Sequelize.STRING,
-        allowNull:false
-    }
-},{
-    sequelize,
-    modelName:'projects'
-})
-class Member extends Sequelize.Model { }
-Project.init({
-    id_member:{
-        type:Sequelize.INTEGER,
-        primaryKey:true,
-        autoIncrement:true
-    },
-    id_user:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
-    id_project:{
-        type:Sequelize.STRING,
-        allowNull:false
-    }
-},{
-    sequelize,
-    modelName:'members'
-})
+
+
 class Bug extends Sequelize.Model{}
 Bug.init({
     id_bug:{
@@ -114,45 +109,23 @@ Bug.init({
     sequelize,
     modelName:'bugs'
 })
-class ProjectBug extends Sequelize.Model{};
-ProjectBug.init({
-    id:{
-        primaryKey:true,
-        type:Sequelize.INTEGER,
-        autoIncrement:true
-    },
-    id_project:{
-        type:Sequelize.INTEGER,
-        allowNull:false
-        
-    },
-    id_bug:{
-        type:Sequelize.INTEGER,
-        allowNull:false
-    }
-},{
-sequelize,
-nameModel:'projectbugs'
-});
-ProjectBug.sync({force:true});
+
 User.sync({force:true});
 Project.sync({force:true});
 Member.sync({force:true});
 Bug.sync({force:true});
-Project.hasMany(Member,{as: 'Member',foreignKey: 'id_member'});
-Member.belogsTo(Project,{as: 'Project',foreignKey: 'id_member'});
-User.hasMany(Member,{as:'Member',foreignKey: 'id_user'});
-Member.belogsTo(User,{as:'User',foreignKey: 'id_user'});
-ProjectBug.hasMany(Bug,{as:'Bug',foreignKey: 'id_bug'});
-Bug.belogsTo(ProjectBug,{as:'ProjectBug',foreignKey: 'id_bug'});
-ProjectBug.hasMany(Project,{as:'Project',foreignKey: 'id_project'});
-Project.belogsTo(ProjectBug,{as:'ProjectBug',foreignKey: 'id_project'});
+
+
+//Project.hasMany(User,{foreignKey:'id_project',foreignKeyConstraint:true});
+Project.hasMany(Member,{foreignKey:'id_project',foreignKeyConstraint:true});
+User.hasMany(Member,{foreignKey:'id_user',foreignKeyConstraint:true});
+Project.hasMany(Bug,{foreignKey:'id_project',foreignKeyConstraint:true});
 module.exports={
     sequelize,
     User,
     Project,
     Member,
     Bug,
-    ProjectBug
+   
     
 }
