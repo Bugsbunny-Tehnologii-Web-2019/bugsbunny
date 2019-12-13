@@ -1,5 +1,5 @@
 const db=require("./backend/models/models");
-db.sequelize.sync().then(async()=>{
+db.sequelize.sync({force:true}).then(async()=>{
     console.log('tablesCreated');
     
     let user=await db.User.create({
@@ -12,7 +12,10 @@ db.sequelize.sync().then(async()=>{
         link:'http://link',
         name:'link2'
     })
-    
+    await db.Member.create({
+        id_project:project.id_project,
+        id_user:user.id_user
+    })
 }).catch(()=>{
     console.log('could not create tables');
 })

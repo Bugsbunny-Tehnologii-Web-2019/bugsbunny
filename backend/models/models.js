@@ -24,6 +24,7 @@ Member.init({
     }
     
     
+    
 },{
     sequelize,
     modelName:'members'
@@ -111,10 +112,6 @@ Bug.init({
     modelName:'bugs'
 })
 
-User.sync({force:true});
-Project.sync({force:true});
-Member.sync({force:true});
-Bug.sync({force:true});
 
 
 //Project.hasMany(User,{foreignKey:'id_project',foreignKeyConstraint:true});
