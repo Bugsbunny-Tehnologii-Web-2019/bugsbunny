@@ -1,4 +1,4 @@
-const userService =require("./backend/service/userService");
+const userService =require("./../service/userService");
 
 const createUser=async (req,res)=>{
     const user=req.body;

@@ -1,5 +1,5 @@
 const express=require("express");
-const createUser=require("./backend/controller/usercontroller");
+const createUser=require("./../controller/usercontroller");
 const router=express.Router();
 
 
