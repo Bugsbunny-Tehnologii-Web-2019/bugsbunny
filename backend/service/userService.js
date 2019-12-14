@@ -1,4 +1,4 @@
-const { User }=require("./../models/models");
+const { User }=require("../backend/models/models");
 
 const user = { 
     create: async (user)=>{
