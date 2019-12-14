@@ -14,4 +14,14 @@ const createProject=async (req,res)=>{
         })
     }
 }
-module.exports=createProject;
+const getAllProjects = async (req, res, next) => {
+    try {
+        const projects = await projectService.getAll();
+        res.status(200).send(projects);
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+}
+module.exports={createProject, getAllProjects};

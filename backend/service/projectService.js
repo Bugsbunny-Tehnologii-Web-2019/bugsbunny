@@ -9,6 +9,14 @@ const project = {
         }catch(err){
             throw new Error(err.message);
         }
+    },
+    getAll: async () => {
+        try {
+            const projects = await Project.findAll();
+            return projects;
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
     
 }

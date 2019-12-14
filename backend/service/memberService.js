@@ -9,6 +9,14 @@ const member = {
         }catch(err){
             throw new Error(err.message);
         }
+    },
+   getAll: async () => {
+        try {
+            const members = await Member.findAll();
+            return members;
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
     
 }

@@ -14,4 +14,18 @@ const createBug=async (req,res)=>{
         })
     }
 }
-module.exports=createBug;
+const getAllBugs = async (req, res, next) => {
+    try {
+        const bugs = await bugService.getAll();
+        res.status(200).send(bugs);
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+}
+module.exports={
+    createBug,
+    getAllBugs
+    
+};

@@ -8,4 +8,17 @@ const createMember=async (req,res)=>{
        });
        
 }
-module.exports=createMember;
+const getAllMembers = async (req, res, next) => {
+    try {
+        const members = await memberService.getAll();
+        res.status(200).send(members);
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+}
+module.exports={
+    createMember,
+    getAllMembers
+};

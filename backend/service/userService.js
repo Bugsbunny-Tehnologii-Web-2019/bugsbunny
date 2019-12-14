@@ -9,6 +9,14 @@ const user = {
         }catch(err){
             throw new Error(err.message);
         }
+    },
+    getAll: async () => {
+        try {
+            const users = await User.findAll();
+            return users;
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
     
 }

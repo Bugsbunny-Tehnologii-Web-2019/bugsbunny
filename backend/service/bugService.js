@@ -9,7 +9,16 @@ const bug = {
         }catch(err){
             throw new Error(err.message);
         }
+    },
+   getAll: async () => {
+        try {
+            const bugs = await Bug.findAll();
+            return bugs;
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
+
     
 }
 module.exports=bug;
