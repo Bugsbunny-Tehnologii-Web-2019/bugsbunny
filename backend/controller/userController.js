@@ -13,7 +13,8 @@ const createUser=async (req,res)=>{
             message:'Invalid user payload.'
         })
     }
-}
+};
+
 const getAllUsers = async (req, res, next) => {
     try {
         const users = await userService.getAll();
@@ -23,5 +24,17 @@ const getAllUsers = async (req, res, next) => {
             message: `Error occured: ${err.message}`
         });
     }
-}
-module.exports={createUser,getAllUsers};
+};
+
+const deleteUser = async (req, res) => {
+    try {
+        await userService.delete(req.params.id);
+        res.status(200).send();
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+};
+
+module.exports={createUser,getAllUsers, deleteUser};

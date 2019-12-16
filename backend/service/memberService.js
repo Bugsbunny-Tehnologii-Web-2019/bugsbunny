@@ -10,14 +10,25 @@ const member = {
             throw new Error(err.message);
         }
     },
-   getAll: async () => {
+    getAll: async () => {
         try {
             const members = await Member.findAll();
             return members;
         } catch(err) {
             throw new Error(err.message);
         }
+    },
+    delete: async (id) => {
+        try {
+            return await Member.destroy({
+                where: {
+                    id_member: id
+                }
+            });
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
-    
-}
+};
+
 module.exports=member;

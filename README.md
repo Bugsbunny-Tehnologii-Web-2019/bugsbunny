@@ -32,6 +32,23 @@ Aplicația dezvoltată oferă un set de caracteristici personalizabile care răs
 
 ![highlevel-overview](./docs/highlevel.png)
 
+## Cum se pornește aplicația
+
+- Instalare dependințe
+```
+    npm i
+```
+
+- Creare bază de date (dacă nu există deja)
+```
+    node createDb.js
+```
+
+- Pornire server express.js
+```
+    node server.js
+```
+
 ## Interfețe aplicație
 
 

@@ -22,9 +22,6 @@ Member.init({
         primaryKey:true,
         autoIncrement:true
     }
-    
-    
-    
 },{
     sequelize,
     modelName:'members'
@@ -112,8 +109,6 @@ Bug.init({
     modelName:'bugs'
 })
 
-
-
 //Project.hasMany(User,{foreignKey:'id_project',foreignKeyConstraint:true});
 Project.hasMany(Member,{foreignKey:'id_project',foreignKeyConstraint:true});
 User.hasMany(Member,{foreignKey:'id_user',foreignKeyConstraint:true});
@@ -124,6 +119,4 @@ module.exports={
     Project,
     Member,
     Bug,
-   
-    
 }

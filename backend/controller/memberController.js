@@ -7,7 +7,8 @@ const createMember=async (req,res)=>{
            message:'Project create successfully'
        });
        
-}
+};
+
 const getAllMembers = async (req, res, next) => {
     try {
         const members = await memberService.getAll();
@@ -17,8 +18,21 @@ const getAllMembers = async (req, res, next) => {
             message: `Error occured: ${err.message}`
         });
     }
-}
+};
+
+const deleteMember = async (req, res) => {
+    try {
+        await memberService.delete(req.params.id);
+        res.status(200).send();
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+};
+
 module.exports={
     createMember,
-    getAllMembers
+    getAllMembers,
+    deleteMember
 };

@@ -13,7 +13,8 @@ const createProject=async (req,res)=>{
             message:'Invalid project payload.'
         })
     }
-}
+};
+
 const getAllProjects = async (req, res, next) => {
     try {
         const projects = await projectService.getAll();
@@ -23,5 +24,17 @@ const getAllProjects = async (req, res, next) => {
             message: `Error occured: ${err.message}`
         });
     }
-}
-module.exports={createProject, getAllProjects};
+};
+
+const deleteProject = async (req, res) => {
+    try {
+        await projectService.delete(req.params.id);
+        res.status(200).send();
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+};
+
+module.exports={createProject, getAllProjects, deleteProject};

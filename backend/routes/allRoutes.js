@@ -1,8 +1,8 @@
 const express=require("express");
-const {createUser, getAllUsers}=require("./../controller/usercontroller");
-const {createProject, getAllProjects}=require("./../controller/projectController");
-const {createBug,getAllBugs}=require("./../controller/bugController");
-const {createMember,getAllMembers}=require("./../controller/memberController");
+const {createUser, getAllUsers, deleteUser}=require("../controller/userController");
+const {createProject, getAllProjects, deleteProject}=require("./../controller/projectController");
+const {createBug,getAllBugs, deleteBug}=require("./../controller/bugController");
+const {createMember,getAllMembers, deleteMember}=require("./../controller/memberController");
 const router=express.Router();
 
 
@@ -16,5 +16,10 @@ router.get('/users',getAllUsers);
 router.get('/projects',getAllProjects);
 router.get('/bugs',getAllBugs);
 router.get('/members',getAllMembers);
+
+router.delete('/users/:id', deleteUser);
+router.delete('/projects/:id', deleteProject);
+router.delete('/bugs/:id', deleteBug);
+router.delete('/members/:id', deleteMember);
 
 module.exports=router;

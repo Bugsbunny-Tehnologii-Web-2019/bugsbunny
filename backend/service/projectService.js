@@ -17,7 +17,17 @@ const project = {
         } catch(err) {
             throw new Error(err.message);
         }
+    },
+    delete: async (id) => {
+        try {
+            return await Project.destroy({
+                where: {
+                    id_project: id
+                }
+            });
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
-    
-}
+};
 module.exports=project;

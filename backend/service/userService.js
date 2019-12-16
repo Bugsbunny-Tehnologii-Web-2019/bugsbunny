@@ -17,7 +17,18 @@ const user = {
         } catch(err) {
             throw new Error(err.message);
         }
+    },
+    delete: async (id) => {
+        try {
+            return await User.destroy({
+                where: {
+                    id_user: id
+                }
+            });
+        } catch(err) {
+            throw new Error(err.message);
+        }
     }
     
-}
+};
 module.exports=user;

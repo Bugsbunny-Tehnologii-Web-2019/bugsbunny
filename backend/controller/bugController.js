@@ -13,7 +13,8 @@ const createBug=async (req,res)=>{
             message:'Invalid bug payload.'
         })
     }
-}
+};
+
 const getAllBugs = async (req, res, next) => {
     try {
         const bugs = await bugService.getAll();
@@ -23,9 +24,21 @@ const getAllBugs = async (req, res, next) => {
             message: `Error occured: ${err.message}`
         });
     }
-}
+};
+
+const deleteBug = async (req, res) => {
+    try {
+        await bugService.delete(req.params.id);
+        res.status(200).send();
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+};
+
 module.exports={
     createBug,
-    getAllBugs
-    
+    getAllBugs,
+    deleteBug
 };
