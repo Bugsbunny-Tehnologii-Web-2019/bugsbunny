@@ -33,7 +33,7 @@ class AddUser extends React.Component{
     }
     addUser=()=>{
         const user=this.state;
-        axios.post('http://52.14.182.155:8080/api/user',user).then(res=>{
+        axios.post('http://3.15.177.221:3000/api/user',user).then(res=>{
             console.log(res);
         }).catch(err=>{
             console.log(err);
