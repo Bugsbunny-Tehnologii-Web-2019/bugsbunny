@@ -5,7 +5,7 @@ const createProject=async (req,res)=>{
     if(project.link&&project.name){
        const result=await  projectService.create(project);
        res.status(201).send({
-           message:'Project create successfully'
+           message:'Project created successfully'
        });
        
     }else{
@@ -37,4 +37,19 @@ const deleteProject = async (req, res) => {
     }
 };
 
-module.exports={createProject, getAllProjects, deleteProject};
+const getAllProjectsForUser = async (req, res) => {
+    try {
+        const userId = req.params.id;
+
+        console.log('User id: ' + userId);
+
+        const result = await projectService.getAllForUser(userId);
+        res.status(200).send(result);
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+}
+
+module.exports={createProject, getAllProjects, deleteProject, getAllProjectsForUser};

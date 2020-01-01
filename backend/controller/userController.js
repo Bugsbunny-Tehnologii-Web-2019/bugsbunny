@@ -37,4 +37,20 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports={createUser,getAllUsers, deleteUser};
+const authenticateUser = async (req, res) => {
+    try {
+        const result = await userService.authenticate(req.body);
+
+        if (result != null) {
+            res.status(200).send(result);
+        } else {
+            res.status(401).send();
+        }
+    } catch(err) {
+        res.status(500).send({
+            message: `Error occured: ${err.message}`
+        });
+    }
+}
+
+module.exports={createUser,getAllUsers, deleteUser, authenticateUser};

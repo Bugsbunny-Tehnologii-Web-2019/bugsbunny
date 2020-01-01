@@ -1,0 +1,15 @@
+.projects {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 24px;
+}
+
+.call-to-action {
+    width: 100%;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.center {
+    margin: 0 auto;
+}
