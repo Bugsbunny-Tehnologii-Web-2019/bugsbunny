@@ -37,7 +37,7 @@ class Project extends Component {
     const user = State.getUser() === null? {} : State.getUser();
 
     axios
-      .get(`http://localhost:3001/api/users/${user.id_user}/projects`)
+      .get(`http://18.224.136.104:3001/api/users/${user.id_user}/projects`)
       .then(response => {
         this.setState(previousState => {
           return {

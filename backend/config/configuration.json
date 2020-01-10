@@ -2,6 +2,6 @@
     "database": {
         "database_name": "bugsbunny",
         "username": "root",
-        "password": ""
+        "password": "p@ss"
     }
 }
