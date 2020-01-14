@@ -37,7 +37,7 @@ class Project extends Component {
     const user = State.getUser() === null? {} : State.getUser();
 
     axios
-      .get(`http://18.224.136.104:3001/api/users/${user.id_user}/projects`)
+      .get(`http://18.221.44.231:3001/api/users/${user.id_user}/projects`)
       .then(response => {
         this.setState(previousState => {
           return {
@@ -67,7 +67,7 @@ class Project extends Component {
 
   handleNewProject = () => {
     axios
-      .post('http://localhost:3001/api/project', {name: this.state.inputProjectName, link: this.state.inputProjectLink})
+      .post('http://18.221.44.231:3001/api/project', {name: this.state.inputProjectName, link: this.state.inputProjectLink})
       .then(response => {
         this.handleClose();
       }).catch(error => {

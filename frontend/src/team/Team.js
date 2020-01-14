@@ -14,9 +14,14 @@ class Team extends Component {
       users:[],
     projects:[],
     
-    name_project:'Choose a projoct',
-    email_user:'Choose a member'
-    
+    name_project:'',
+    email_user:'Default',
+    default_project:{
+      id_project:0,
+      link:"",
+      name:"Default project",
+      
+    }
     }
     
   }
@@ -48,11 +53,11 @@ class Team extends Component {
   }
   componentDidMount() {
      console.info(`Trying to get projects for user with email: ${State.getUser().email}`);
-     const user = State.getUser() === null? {} : State.getUser();
+   //  const user = State.getUser() === null? {} : State.getUser();
 
     
     axios
-      .get(`http://18.222.85.62:3001/api/users/${user.id_user}/projects`)
+      .get(`http://18.221.44.231:3001/api/projects`)
       .then(response => {
         this.setState(previousState => {
           return {
@@ -62,7 +67,7 @@ class Team extends Component {
       }).catch(error => {
         console.log(error);
       });
-      axios.get('http://18.222.85.62:3001/api/users/')
+      axios.get('http://18.221.44.231:3001/api/users/')
       .then(response=>{
          this.setState(previousState=>{
           return {
@@ -73,7 +78,7 @@ class Team extends Component {
         console.log(error);
       });
        
-    
+  
     
   }
   
@@ -81,22 +86,22 @@ class Team extends Component {
     
    
     
-     let id_project;
-  for(let u in this.state.projects){
+     let id_project
+  for(let u of this.state.projects){
         if(u.name===this.state.name_project){
           id_project=u.id_project
       } 
     
       }
-    let id_user;
-     for(let u of this.state.users){
+   let id_user;
+    for(let u of this.state.users){
         if(u.email===this.state.email_user){
           id_user=u.id_user
             
-       } }
+      } }
     console.log(id_user)
       axios
-      .post('http://18.222.85.62:3001/api/member', {id_project: id_project, id_user: id_user})
+      .post('http://18.221.44.231:3001/api/member', {id_project: id_project, id_user: id_user})
       .then(response => {
         this.handleClose();
       }).catch(error => {
@@ -105,13 +110,18 @@ class Team extends Component {
   }
   render() {
     
-    
-     const project=this.state.projects.map((el)=>
+      console.log(this.state.projects);
+      
+      var  project;
+      
+     project=this.state.projects.map((el)=>
        
-        <option key={el.id_project}>{el.name}</option>
+        
+        <option  key={el.id_project}>{el.name}</option>
+        
         
       );
-         project.push(<option>"Default"</option>)
+        
      
       const users=this.state.users.map((el)=>
        
@@ -134,18 +144,18 @@ class Team extends Component {
           <form>
             <div className="form-group">
                     <label htmlFor="projectNameInputTeam">Project name</label>
-                    <select className="form-control" 
+                    <select  label="dsadsa" className="form-control" 
                            value={this.state.name_project} 
                            onChange={ event => this.updateProjectNameValue(event) }>
+                           <option key="0">-----Choose a project-----</option>
                          {project}
                     </select>
            </div>
            <div className="form-group" title="sdasa">
                     <label htmlFor="projectNameInputTeam">Members</label>
-                   <select  className="form-control" title="sdsa" value={this.state.email_user}
-                 
-                   
+                   <select   className="form-control" value={this.state.email_user}
                    onChange={ event => this.updateUserNameValue(event) }>
+                   <option key="0">-----Choose member for project-----</option>
                           {users}
                    </select>
            </div>
