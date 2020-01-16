@@ -57,7 +57,7 @@ class Team extends Component {
 
     
     axios
-      .get(`http://18.221.44.231:3001/api/projects`)
+      .get(`http://localhost:3001/api/projects`)
       .then(response => {
         this.setState(previousState => {
           return {
@@ -67,7 +67,7 @@ class Team extends Component {
       }).catch(error => {
         console.log(error);
       });
-      axios.get('http://18.221.44.231:3001/api/users/')
+      axios.get('http://localhost:3001/api/users/')
       .then(response=>{
          this.setState(previousState=>{
           return {
@@ -101,7 +101,7 @@ class Team extends Component {
       } }
     console.log(id_user)
       axios
-      .post('http://18.221.44.231:3001/api/member', {id_project: id_project, id_user: id_user})
+      .post('http://localhost:3001/api/member', {id_project: id_project, id_user: id_user})
       .then(response => {
         this.handleClose();
       }).catch(error => {

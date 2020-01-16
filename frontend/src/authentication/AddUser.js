@@ -40,7 +40,7 @@ class AddUser extends React.Component{
         event.preventDefault();
         const user=this.state;
         if(this.state.email.includes("@")&&this.state.name&&this.state.password)
-        {axios.post('http://18.221.44.231:3001/api/user',user).then(res=>{
+        {axios.post('http://localhost:3001/api/user',user).then(res=>{
             console.log(res);
       this.props.history.push('/login');
         }).catch(err=>{

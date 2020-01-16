@@ -50,7 +50,7 @@ class Bug extends Component {
 
   componentDidMount() {
 
-axios.get('http://18.221.44.231:3001/api/bugs')
+axios.get('http://localhost:3001/api/bugs')
       .then(response=>{
          this.setState(previousState=>{
           return {
@@ -61,7 +61,7 @@ axios.get('http://18.221.44.231:3001/api/bugs')
         console.log(error);
       });
       
-      axios.get('http://18.221.44.231:3001/api/projects')
+      axios.get('http://localhost:3001/api/projects')
       .then(response=>{
          this.setState(previousState=>{
           return {
@@ -127,7 +127,7 @@ axios.get('http://18.221.44.231:3001/api/bugs')
     }
     
     axios
-      .post('http://18.221.44.231:3001/api/bug',  {link_commit: this.state.inputProjectLink, 
+      .post('http://localhost:3001/api/bug',  {link_commit: this.state.inputProjectLink, 
       priority: this.state.inputPriority,description:this.state.inputDescription,severity:this.state.inputSeverity, id_project:idProiect})
       .then(response => {
         this.handleClose();
@@ -219,21 +219,21 @@ axios.get('http://18.221.44.231:3001/api/bugs')
            </div>
 
               <div className="form-group">
-                <label htmlFor="severity">Description</label>
+                <label htmlFor="severity">Priority</label>
                 <input type="text" className="form-control" 
-                       id="idDescription" 
+                       id="idPriority" 
                        placeholder="Enter the priority of the bug" 
-                       value = { this.state.inputDescription } onChange = { event => this.handleChangeDescription(event) }/>
-                <small id="idDescription" className="form-text text-muted">In the description field should be a few things about the bug.</small>
+                       value = { this.state.inputPriority } onChange = { event => this.handleChangePriority(event) }/>
+                <small id="idPriority" className="form-text text-muted">The priority field establish the importance of fixing the bug.</small>
               </div>
               
               <div className="form-group">
-                <label htmlFor="description">Priority</label>
+                <label htmlFor="description">Description</label>
                 <input type="text" className="form-control" 
-                       id="idPriority" 
+                       id="idDescription" 
                        placeholder="Enter the description of the bug" 
-                       value = { this.state.inputPriority } onChange = { event => this.handleChangePriority(event) }/>
-                <small id="idPriority" className="form-text text-muted">The priority field establish the importance of fixing the bug.</small>
+                       value = { this.state.inputDescription} onChange = { event => this.handleChangeDescription(event) }/>
+                <small id="idDescription" className="form-text text-muted">The description field.</small>
               </div>
                  <div className="form-group">
                 <label htmlFor="severity">Severity</label>

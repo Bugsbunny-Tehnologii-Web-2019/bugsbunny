@@ -37,7 +37,7 @@ class Login extends Component {
     console.info(`Trying to authenticate user with email: ${this.state.inputEmail}`);
 
     axios
-      .post('http://18.221.44.231:3001/api/authenticate', {email: this.state.inputEmail, password: this.state.inputPassword})
+      .post('http://localhost:3001/api/authenticate', {email: this.state.inputEmail, password: this.state.inputPassword})
       .then(response => {
           State.setUser(response.data);
           this.props.history.push('/projects');
